@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title%}
+    Register page
+{% endblock %}
+
+{% block content %}
+
+    <div class="container text-center mt-4">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class=" alert alert-{{ category }}" >
+                        <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true" > &times; </span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+        <form action="" method="post" class="form-register" style="color: white">
+            <h2 class="h3 mb-3 font-weight-normal">
+                Please create our Account
+            </h2>
+            <br>
+
+            {{ form.hidden_tag() }}
+
+            {{ form.username.label() }}
+            {{ form.username(class="form-control b-primary", placeholder="User Name") }}
+
+            {{ form.email_address.label() }}
+            {{ form.email_address(class="form-control b-primary", placeholder="Email address") }}
+
+            {{ form.password1.label() }}
+            {{ form.password1(class="form-control b-primary", placeholder="User password") }}
+
+            {{ form.password2.label() }}
+            {{ form.password2(class="form-control b-primary", placeholder="User password configuration") }}
+
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+
+        <div class="checkbox mb-3" >
+            <h6>Already have an account?</h6>
+            <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}"> LogIn!</a>
+        </div>
+    </div>
+
+{% endblock %}

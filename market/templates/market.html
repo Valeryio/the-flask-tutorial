@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block title%}
+    Market page
+{% endblock %}
+
+{% block content %}
+    <div class="p-4" style="background: white">
+
+    <h2>Article page</h2>
+    <table class="table" >
+        <thead>
+        <tr>
+            {% for keys in all_items[0].__dict__.keys() %}
+
+                {% if keys != "_sa_instance_state" %}
+                    <th scope="col">{{ keys }}</th>
+                {% endif %}
+            {% endfor %}
+            <th scope="col">Options</th>
+        </tr>
+
+        </thead>
+        <tbody>
+            {% for item in all_items %}
+                <tr scope="row">
+                    {% for key, value in item.__dict__.items() %}
+                        {% if key != "_sa_instance_state" %}
+                            <td>{{ item[key] }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    <td>
+                        <button class="btn btn-outline btn-info" >More info</button>
+                        <button class="btn btn-outline btn-success" >Purchase the database</button>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    </div>
+{% endblock %}
